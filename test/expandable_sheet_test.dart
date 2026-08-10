@@ -3,10 +3,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:expandable_sheet/expandable_sheet.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = Calculator();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
+  test('ExpandableSheetController initializes with initialHeight', () {
+    final controller = ExpandableSheetController(initialHeight: 150);
+    expect(controller.height, 150);
+    controller.dispose();
+  });
+
+  test('ExpandableSheetController updates height and visibility', () {
+    final controller = ExpandableSheetController();
+    controller.height = 200;
+    expect(controller.height, 200);
+
+    controller.show();
+    expect(controller.visible, true);
+
+    controller.hide();
+    expect(controller.visible, false);
+
+    controller.dispose();
   });
 }
